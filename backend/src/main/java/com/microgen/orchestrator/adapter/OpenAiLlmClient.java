@@ -47,7 +47,8 @@ public class OpenAiLlmClient implements LlmClient {
         messages.add(Map.of("role", "user", "content", userPrompt));
 
         requestBody.put("messages", messages);
-        requestBody.put("temperature", 0.7);
+        requestBody.put("temperature", 0.2);
+        requestBody.put("max_tokens", 8000);
 
         try {
             HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);

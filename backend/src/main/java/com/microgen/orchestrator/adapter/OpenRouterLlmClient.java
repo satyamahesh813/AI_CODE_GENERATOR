@@ -39,6 +39,8 @@ public class OpenRouterLlmClient implements LlmClient {
         messages.add(Map.of("role", "system", "content", systemPrompt));
         messages.add(Map.of("role", "user", "content", userPrompt));
         requestBody.put("messages", messages);
+        requestBody.put("temperature", 0.2);
+        requestBody.put("max_tokens", 8000);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

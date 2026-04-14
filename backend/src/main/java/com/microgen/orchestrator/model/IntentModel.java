@@ -1,6 +1,7 @@
 package com.microgen.orchestrator.model;
 
 import lombok.Data;
+import java.util.List;
 
 @Data
 public class IntentModel {
@@ -13,19 +14,27 @@ public class IntentModel {
     private String auth;
     private String database;
     private String persistence;
+    private String messaging;
+    private String cache;
+    private String buildTool;
+    private String observability;
     private Integer port;
-    private java.util.List<EntityModel> entities;
+    private List<EntityModel> entities;
 
     public IntentModel() {
-        this.serviceName = "generated-service";
-        this.packageName = "com.microgen.generated";
-        this.language = "JAVA";
-        this.framework = "SPRING_BOOT";
-        this.architecture = "LAYERED";
-        this.serviceType = "GENERAL";
-        this.auth = "NONE";
-        this.database = "H2";
-        this.persistence = "JPA";
-        this.port = 8082;
+        this.serviceName    = "generated-service";
+        this.packageName    = "com.microgen.generated";
+        this.language       = "JAVA";
+        this.framework      = "SPRING_BOOT";
+        this.architecture   = "LAYERED";
+        this.serviceType    = "GENERAL";
+        this.auth           = "NONE";
+        this.database       = "NONE";
+        this.persistence    = "NONE";
+        this.messaging      = "NONE";
+        this.cache          = "NONE";
+        this.buildTool      = "MAVEN";
+        this.observability  = "NONE";
+        this.port           = 8082;
     }
 }

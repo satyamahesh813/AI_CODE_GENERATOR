@@ -1,11 +1,21 @@
 import { create } from 'zustand';
 
-interface GenConfig {
-    serviceType: string;
+export interface GenConfig {
+    // Core
     auth: string;
     database: string;
     persistence: string;
+    // Messaging
+    messaging: string;
+    // Caching
+    cache: string;
+    // Build & Deploy
+    buildTool: string;
+    // Observability
+    observability: string;
+    // Architecture
     architecture: string;
+    // Language
     language: string;
 }
 
@@ -22,18 +32,24 @@ interface GenState {
     setGeneratedFiles: (files: Record<string, string>) => void;
     setIsGenerating: (isGenerating: boolean) => void;
     setJobError: (error: string | null) => void;
+    reset: () => void;
 }
+
+const defaultConfig: GenConfig = {
+    auth: 'NONE',
+    database: 'NONE',
+    persistence: 'NONE',
+    messaging: 'NONE',
+    cache: 'NONE',
+    buildTool: 'MAVEN',
+    observability: 'NONE',
+    architecture: 'LAYERED',
+    language: 'JAVA',
+};
 
 export const useStore = create<GenState>((set) => ({
     prompt: '',
-    config: {
-        serviceType: 'AUTH',
-        auth: 'JWT',
-        database: 'MYSQL',
-        persistence: 'JPA',
-        architecture: 'LAYERED',
-        language: 'JAVA',
-    },
+    config: defaultConfig,
     currentJobId: null,
     generatedFiles: {},
     isGenerating: false,
@@ -44,4 +60,10 @@ export const useStore = create<GenState>((set) => ({
     setGeneratedFiles: (generatedFiles) => set({ generatedFiles }),
     setIsGenerating: (isGenerating) => set({ isGenerating }),
     setJobError: (jobError) => set({ jobError }),
+    reset: () => set({
+        currentJobId: null,
+        generatedFiles: {},
+        isGenerating: false,
+        jobError: null,
+    }),
 }));
